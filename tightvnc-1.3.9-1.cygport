@@ -1,0 +1,49 @@
+DESCRIPTION="TightVNC vncviewer and vncserver/Xvnc"
+HOMEPAGE="http://www.tightvnc.com/"
+SRC_URI="mirror://sourceforge/vnc-tight/${P}_unixsrc.tar.bz2
+         mirror://portage/net-misc/${PN}/files/vncviewer.png"
+PATCH_URI="
+	mirror://portage/net-misc/${PN}/files/${PN}-1.3.8-pathfixes.patch
+	mirror://portage/net-misc/${PN}/files/${PN}-1.3.8-imake-tmpdir.patch
+	mirror://portage/net-misc/${PN}/files/server-CVE-2007-1003.patch
+	mirror://portage/net-misc/${PN}/files/server-CVE-2007-1351-1352.patch
+	1.3.9-exeext.patch
+	1.3.9-vncserver.patch
+	1.3.9-Xvnc.patch
+"
+
+SRC_DIR="vnc_unixsrc"
+
+DISTCLEANFILES="Xvnc/Makefile"
+
+src_compile() {
+	lndirs
+	cd ${B}
+	xmkmf || error "xmkmf failed"
+	cygmake -j1 CDEBUGFLAGS="${CFLAGS}" World
+
+	cd ${B}/Xvnc
+	ln -fs /usr/lib/X11/config/{cygwin,xorg}* config/cf/
+	# why is the included imake broken??
+	./configure || true
+	for d in $(find . -name Imakefile)
+	do
+		pushd ${d%Imakefile}
+		imake -I${B}/Xvnc/config/cf/ -DTOPDIR=${B}/Xvnc/ -DCURDIR=${d%Imakefile}
+		popd
+	done
+	cygmake -j1 includes
+	# only activate libwrap usage if you're using tcpd
+	cygmake -j1 CDEBUGFLAGS="${CFLAGS}" # EXTRA_DEFINES="-DUSE_LIBWRAP=1" EXTRA_LIBRARIES="-lwrap"
+}
+
+src_install() {
+	cd ${B}
+	dodir /usr/bin /usr/share/man/man1
+	./vncinstall ${D}/usr/bin ${D}/usr/share/man || error "vncinstall failed"
+
+	chmod 755 ${D}/usr/bin/*
+
+	doicon ${S}/vncviewer.png
+	make_desktop_entry vncviewer "TightVNC Viewer" vncviewer "Network;RemoteAccess"
+}

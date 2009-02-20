@@ -1,0 +1,24 @@
+Add .exe to targets.
+
+--- origsrc/vnc_unixsrc/vncconnect/Imakefile	2002-04-30 08:07:31.000000000 -0500
++++ src/vnc_unixsrc/vncconnect/Imakefile	2009-02-20 04:11:30.865375000 -0600
+@@ -3,7 +3,7 @@
+ EXTRA_DEFINES = -D__EXTENSIONS__
+ #endif
+ 
+-all:: vncconnect
++all:: ProgramTargetName(vncconnect)
+ 
+ NormalProgramTarget(vncconnect,vncconnect.o,$(DEPXLIB),$(XLIB),)
+ DependTarget()
+--- origsrc/vnc_unixsrc/vncpasswd/Imakefile	2002-04-30 08:07:31.000000000 -0500
++++ src/vnc_unixsrc/vncpasswd/Imakefile	2009-02-20 04:11:30.865375000 -0600
+@@ -7,7 +7,7 @@ SRCS = vncpasswd.c
+ INCLUDES = -I../include
+ VNCAUTH_LIB = ../libvncauth/libvncauth.a
+ 
+-all:: vncpasswd
++all:: ProgramTargetName(vncpasswd)
+ 
+ NormalProgramTarget(vncpasswd,vncpasswd.o,$(VNCAUTH_LIB),$(VNCAUTH_LIB),)
+ DependTarget()

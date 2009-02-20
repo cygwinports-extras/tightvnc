@@ -1,0 +1,50 @@
+Not sure why Gentoo changed 75dpi to Type1, the former has more fonts...
+
+[1.7] FIXME: remove the s/:/./ code
+
+--- origsrc/vnc_unixsrc/vncserver	2009-02-20 04:11:20.193500000 -0600
++++ src/vnc_unixsrc/vncserver	2009-02-20 12:36:45.256000000 -0600
+@@ -42,7 +42,7 @@ $fontPath = "unix/:-1";
+ $authType = "-rfbauth $vncUserDir/passwd";
+ 
+ # Here is another example of setting the font path:
+-$fontPath = "/usr/share/fonts/misc/,/usr/share/fonts/Type1/";
++$fontPath = "/usr/share/fonts/misc/,/usr/share/fonts/75dpi/";
+ 
+ # X colors database path is optional, uncomment and edit to use:
+ $colorPath = "/usr/share/X11/rgb";
+@@ -151,7 +151,7 @@ if ((@ARGV > 0) && ($ARGV[0] =~ /^:(\d+)
+ 
+ $vncPort = 5900 + $displayNumber;
+ 
+-$desktopLog = "$vncUserDir/$host:$displayNumber.log";
++$desktopLog = "$vncUserDir/$host.$displayNumber.log";
+ unlink($desktopLog);
+ 
+ # Make an X server cookie - use as the seed the sum of the current time, our
+@@ -189,7 +189,7 @@ $cmd .= " >> " . &quotedString($desktopL
+ 
+ # Run $cmd and record the process ID.
+ 
+-$pidFile = "$vncUserDir/$host:$displayNumber.pid";
++$pidFile = "$vncUserDir/$host.$displayNumber.pid";
+ system("$cmd & echo \$! >$pidFile");
+ 
+ # Give Xvnc a chance to start up
+@@ -470,12 +470,13 @@ sub Usage
+ 
+ sub Kill
+ {
+-    $opt{'-kill'} =~ s/(:\d+)\.\d+$/$1/; # e.g. turn :1.0 into :1
++    $opt{'-kill'} =~ s/:(\d)/\.$1/; # e.g. turn :1 into .1
++    $opt{'-kill'} =~ s/\.(\d+)\.\d+$/\.$1/; # e.g. turn :1.0 into .1
+ 
+-    if ($opt{'-kill'} =~ /^:\d+$/) {
++    if ($opt{'-kill'} =~ /^\.\d+$/) {
+ 	$pidFile = "$vncUserDir/$host$opt{'-kill'}.pid";
+     } else {
+-	if ($opt{'-kill'} !~ /^$host:/) {
++	if ($opt{'-kill'} !~ /^$host\./) {
+ 	    die "\nCan't tell if $opt{'-kill'} is on $host\n".
+ 		"Use -kill :<number> instead\n\n";
+ 	}

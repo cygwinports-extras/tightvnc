@@ -1,0 +1,81 @@
+tightvnc
+------------------------------------------
+VNC (an abbreviation for Virtual Network Computing) is a great 
+client/server software package allowing remote network access to 
+graphical desktops. With VNC, you can access your machine from 
+everywhere provided that your machine is connected to the Internet. This 
+is an enhanced version of VNC, called TightVNC, which includes a lot of 
+new features, improvements, optimizations and bugfixes over the original 
+VNC version.
+
+Runtime requirements:
+  cygwin-1.5.25-15
+  libjpeg62-6b-12
+  libX11_6-1.1.5-2
+  libXaw7-1.0.5-1
+  libXext6-1.0.4-1
+  libXmu6-1.0.4-1
+  libXt6-1.0.5-2
+  zlib-1.2.3-2
+
+Build requirements:
+(besides corresponding -devel packages)
+  binutils-20080624-2
+  cygport-0.4.3-1
+  gawk-3.1.6-1
+  gcc-core-3.4.4-3
+  imake-1.0.2-2
+  make-3.81-2
+  sed-4.1.5-2
+  xorg-cf-files-1.0.2-8
+
+Canonical website:
+  http://www.tightvnc.com/
+
+Canonical download:
+  http://downloads.sourceforge.net/vnc-tight/
+
+-------------------------------------------
+
+Build instructions:
+  unpack tightvnc-1.3.9-X-src.tar.bz2
+    if you use setup to install this src package, it will be
+	 unpacked under /usr/src automatically
+  cd /usr/src
+  cygport ./tightvnc-1.3.9-X.cygport all
+
+This will create:
+  /usr/src/tightvnc-1.3.9-X-src.tar.bz2
+  /usr/src/tightvnc-1.3.9-X.tar.bz2
+
+-------------------------------------------
+
+Files included in the binary package:
+
+  /usr/bin/Xvnc.exe
+  /usr/bin/vncconnect.exe
+  /usr/bin/vncpasswd.exe
+  /usr/bin/vncserver
+  /usr/bin/vncviewer.exe
+  /usr/share/applications/vncviewer.desktop
+  /usr/share/doc/tightvnc-1.3.9/ChangeLog
+  /usr/share/doc/tightvnc-1.3.9/LICENCE.txt
+  /usr/share/doc/tightvnc-1.3.9/README
+  /usr/share/doc/tightvnc-1.3.9/WHATSNEW
+  /usr/share/man/man1/Xvnc.1.gz
+  /usr/share/man/man1/vncconnect.1.gz
+  /usr/share/man/man1/vncpasswd.1.gz
+  /usr/share/man/man1/vncserver.1.gz
+  /usr/share/man/man1/vncviewer.1.gz
+  /usr/share/pixmaps/vncviewer.png
+
+------------------
+
+Port Notes:
+
+----- version 1.3.9-1 -----
+Initial release for Cygwin.
+
+
+Cygwin port maintained by:
+http://sourceware.org/cygwinports/

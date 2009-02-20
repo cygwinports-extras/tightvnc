@@ -1,0 +1,10 @@
+category: Net X11
+requires: cygwin libjpeg62 libX11_6 libXaw7 libXext6 libXmu6 libXt6 zlib
+sdesc: "vncviewer and vncserver/Xvnc"
+ldesc: "VNC (an abbreviation for Virtual Network Computing) is a great 
+client/server software package allowing remote network access to 
+graphical desktops. With VNC, you can access your machine from 
+everywhere provided that your machine is connected to the Internet. This 
+is an enhanced version of VNC, called TightVNC, which includes a lot of 
+new features, improvements, optimizations and bugfixes over the original 
+VNC version."
