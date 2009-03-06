@@ -10,12 +10,17 @@ VNC version.
 
 Runtime requirements:
   cygwin-1.5.25-15
+  font-cursor-misc
+  font-misc-misc
   libjpeg62-6b-12
   libX11_6-1.1.5-2
   libXaw7-1.0.5-1
   libXext6-1.0.4-1
   libXmu6-1.0.4-1
   libXt6-1.0.5-2
+  rgb
+  xauth
+  xsetroot
   zlib-1.2.3-2
 
 Build requirements:
@@ -38,30 +43,33 @@ Canonical download:
 -------------------------------------------
 
 Build instructions:
-  unpack tightvnc-1.3.9-X-src.tar.bz2
+  unpack tightvnc-1.3.10-X-src.tar.bz2
     if you use setup to install this src package, it will be
 	 unpacked under /usr/src automatically
   cd /usr/src
-  cygport ./tightvnc-1.3.9-X.cygport all
+  cygport ./tightvnc-1.3.10-X.cygport all
 
 This will create:
-  /usr/src/tightvnc-1.3.9-X-src.tar.bz2
-  /usr/src/tightvnc-1.3.9-X.tar.bz2
+  /usr/src/tightvnc-1.3.10-X-src.tar.bz2
+  /usr/src/tightvnc-1.3.10-X.tar.bz2
 
 -------------------------------------------
 
 Files included in the binary package:
 
+  /etc/defaults/etc/tightvncserver.conf
+  /etc/postinstall/tightvnc.sh
+  /etc/preremove/tightvnc.sh
   /usr/bin/Xvnc.exe
   /usr/bin/vncconnect.exe
   /usr/bin/vncpasswd.exe
   /usr/bin/vncserver
   /usr/bin/vncviewer.exe
   /usr/share/applications/vncviewer.desktop
-  /usr/share/doc/tightvnc-1.3.9/ChangeLog
-  /usr/share/doc/tightvnc-1.3.9/LICENCE.txt
-  /usr/share/doc/tightvnc-1.3.9/README
-  /usr/share/doc/tightvnc-1.3.9/WHATSNEW
+  /usr/share/doc/tightvnc-1.3.10/ChangeLog
+  /usr/share/doc/tightvnc-1.3.10/LICENCE.txt
+  /usr/share/doc/tightvnc-1.3.10/README
+  /usr/share/doc/tightvnc-1.3.10/WHATSNEW
   /usr/share/man/man1/Xvnc.1.gz
   /usr/share/man/man1/vncconnect.1.gz
   /usr/share/man/man1/vncpasswd.1.gz
@@ -72,6 +80,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.3.10-1 -----
+Version bump.
 
 ----- version 1.3.9-1 -----
 Initial release for Cygwin.
