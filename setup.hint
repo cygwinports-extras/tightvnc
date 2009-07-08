@@ -1,6 +1,6 @@
 category: Net X11
-requires: libjpeg62 libX11_6 libXaw7 libXext6 libXmu6 libXt6 zlib font-cursor-misc font-misc-misc rgb xauth xsetroot
-sdesc: "vncviewer and vncserver/Xvnc"
+requires: libgcc1 libjpeg62 libX11_6 libXaw7 libXext6 libXmu6 libXt6 zlib0 font-cursor-misc font-misc-misc rgb xauth xsetroot
+sdesc: "VNC client and servers"
 ldesc: "VNC (an abbreviation for Virtual Network Computing) is a great 
 client/server software package allowing remote network access to 
 graphical desktops. With VNC, you can access your machine from 
